@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Token Page
+{% endblock %}
+
+{% block content %}
+<div class= "container">
+<form method="POST", class="d-grid">
+
+    {{form.hidden_tag()}}
+    {{form.exp_date.label()}}
+    {{form.exp_date(class= "form-control")}}
+    {{form.reuse_count.label()}}
+    {{form.reuse_count(class= "form-control")}}
+    {{form.add(class= "btn btn-outline-primary")}}
+
+
+</form>
+<hr class="hr hr-blurry my-4">
+</div>
+<div><table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Key</th>
+        <th scope="col">Exp-date</th>
+        <th scope="col">Reuse-count</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for token in tokens %}
+      <tr>
+        <th scope="row">1</th>
+        <td>{{token.token_id}}</td>
+        <td>{{token.exp_date}}</td>
+        <td>{{token.reuse_count}}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table></div>
+{% endblock %}

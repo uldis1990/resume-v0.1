@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}
+References Page
+{% endblock %}
+
+
+
+{% block content %}
+{% if session["user_id"]%}
+{% if not session["token"]%}
+{% if referances %}
+    <ul >
+      <li>
+        <form action="{{ url_for('delete') }}" method="POST">
+        <div class="container text-center">
+          <div class="row">
+            <div class="col p-2 text-start">
+              <select class="form-select " name="item6" required>
+                <option value="" disabled selected>References</option>
+                {% for val in referances %}
+                    <option value="{{val.company}}">{{val.company}}</option>
+                {%endfor%}
+            </select>
+            </div>
+            <div class="col p-2 text-start">
+              <button class="btn " type="submit">Delete</button>
+            </div>
+
+          </div>
+        </div>
+      </form>
+
+      </li>
+
+    </ul>
+  {% endif %}
+  {% endif %}
+  {% endif %}
+<div class="row p-2 row-cols-1 row-cols-md-2 g-4">
+
+    <!--From db if token-->
+    {% for val in referances %}
+
+    <div class="col ">
+      <div class="card-fluid ">
+        <img src="/uploads/{{val.img}}" class=" card-img-top img-thumbnail rounded mx-auto d-block"  alt="Palm Springs Road"/>
+        <div class="card-body"  >
+          <h5 class="card-title text-center p-2 " style="font-size: 1.7rem"><dt>{{val.ref_name}} from {{val.company}}</dt></h5>
+          <h4 style="font-size: 1.5rem"><i class="fas fa-envelope"></i> {{val.email}}</h4>
+          <h5 style="font-size: 1.5rem"><i class="fas fa-phone"></i> {{val.mob}}</h5>
+          <p class="card-text pt-2" style="font-size: 1.2rem">
+            {{val.referance}}
+          <p style="font-size: 1.2rem"><a href="{{val.link}}" target=”_blank”>See more</a></p>
+        </div>
+      </div>
+    </div>
+{%endfor%}
+
+  </div>
+{% endblock %}
+

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Login Page
+{% endblock %}
+
+{% block content %}
+
+<div class= "container">
+<form method="POST", class="d-grid">
+    {{form.hidden_tag()}}
+    {{form.username.label()}}
+    {{form.username(class= "form-control",placeholder='username')}}
+    {{form.password.label()}}
+    {{form.password(class= "form-control")}}
+    {{form.login(class= "btn btn-outline-primary")}}
+
+
+</form>
+</div>
+<a href="{{ url_for('reset_password') }}">Forgot your password!</a>
+
+{% endblock %}

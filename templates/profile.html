@@ -1,0 +1,375 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Profile Page
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="row p-2 row-cols-1 row-cols-md-2 g-4">
+    {% if session["user_id"] %}
+    <div class="col">
+      <div class="card p-5">
+        <form  method="POST" enctype = "multipart/form-data" action="{{ url_for('profile_page') }}" class="d-grid ">
+          <dt class="text-center"style="font-size: 1.3rem"><h1>PROFILE</h1></dt>
+          {{form.hidden_tag()}}
+          {{form.username.label()}}
+          {{form.username(class= "form-control")}}
+          {{form.first_name.label()}}
+          {{form.first_name(class= "form-control")}}
+          {{form.last_name.label()}}
+          {{form.last_name(class= "form-control")}}
+          {{form.birthday.label()}}
+          {{form.birthday(class= "form-control")}}
+          <hr class="hr hr-blurry my-4">
+          {{form.gol_cv.label()}}
+          {{form.gol_cv(class= "form-control")}}
+          {{form.family_status.label()}}
+          {{form.family_status(class= "form-control")}}
+          {{form.nation.label()}}
+          {{form.nation(class= "form-control")}}
+          <hr class="hr hr-blurry my-4">
+          {{form.image.label()}}
+          {{form.image(class= "form-control")}}
+          {{form.about_me.label()}}
+          {{form.about_me(class= "form-control")}}
+          {{form.adress.label()}}
+          {{form.adress(class= "form-control")}}
+          {{form.email.label()}}
+          {{form.email(class= "form-control")}}
+          {{form.full_mob.label()}}
+          {{form.full_mob(class= "form-control")}}
+          <hr class="hr hr-blurry my-4">
+          Confirm by {{form.password.label()}}
+          {{form.password(class= "form-control")}}
+
+          {{form.cheing(class= "btn btn-outline-primary")}}
+
+      </form>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if session["user_id"] %}
+    <div class="col">
+      <div class="card p-5">
+        <form  method="POST" enctype = "multipart/form-data" action="{{ url_for('project_page') }}" class="d-grid">
+          <dt class="text-center"style="font-size: 1.3rem"><h1>PROJECTS</h1></dt>
+          {{form1.hidden_tag()}}
+          {{form1.project.label()}}
+          {{form1.project(class= "form-control")}}
+          {{form1.project_loc.label()}}
+          {{form1.project_loc(class= "form-control")}}
+          {{form1.type.label()}}
+          {{form1.type(class= "form-control")}}
+          {{form1.gool.label()}}
+          {{form1.gool(class= "form-control")}}
+          {{form1.image.label()}}
+          {{form1.image(class= "form-control")}}
+          {{form1.about_project.label()}}
+          {{form1.about_project(class= "form-control")}}
+
+          {{form1.start_date.label()}}
+          {{form1.start_date(class= "form-control")}}
+          {{form1.end_date.label()}}
+          {{form1.end_date(class= "form-control")}}
+          {{form1.link_project.label()}}
+          {{form1.link_project(class= "form-control")}}
+
+          {{form1.add(class= "btn btn-outline-primary")}}
+
+      </form>
+      </div>
+    </div>
+    {% endif %}
+    {% if session["user_id"] %}
+    <div class="col">
+      <div class="card p-5">
+        <form  method="POST" enctype = "multipart/form-data" action="{{ url_for('work_page') }}" class="d-grid">
+          <dt class="text-center"style="font-size: 1.3rem"><h1>WORK EXPERIENCE</h1></dt>
+          {{form2.hidden_tag()}}
+          {{form2.company.label()}}
+          {{form2.company(class= "form-control")}}
+          {{form2.comp_loc.label()}}
+          {{form2.comp_loc(class= "form-control")}}
+          {{form2.position.label()}}
+          {{form2.position(class= "form-control")}}
+          {{form2.about_work.label()}}
+          {{form2.about_work(class= "form-control")}}
+          {{form2.image.label()}}
+          {{form2.image(class= "form-control")}}
+          {{form2.start_date.label()}}
+          {{form2.start_date(class= "form-control")}}
+          {{form2.end_date.label()}}
+          {{form2.end_date(class= "form-control")}}
+          {{form2.link_comp.label()}}
+          {{form2.link_comp(class= "form-control")}}
+
+          {{form2.add(class= "btn btn-outline-primary")}}
+
+      </form>
+      </div>
+    </div>
+    {% endif %}
+    {% if session["user_id"] %}
+    <div class="col">
+      <div class="card p-5">
+        <form  method="POST" enctype = "multipart/form-data" action="{{ url_for('edu_page') }}" class="d-grid">
+          <dt class="text-center"style="font-size: 1.3rem"><h1>EDUCATION</h1></dt>
+          {{form.hidden_tag()}}
+          {{form3.school.label()}}
+          {{form3.school(class= "form-control")}}
+          {{form3.school_loc.label()}}
+          {{form3.school_loc(class= "form-control")}}
+          {{form3.type.label()}}
+          {{form3.type(class= "form-control")}}
+          {{form3.grade.label()}}
+          {{form3.grade(class= "form-control")}}
+          {{form3.image.label()}}
+          {{form3.image(class= "form-control")}}
+          {{form3.about_edu.label()}}
+          {{form3.about_edu(class= "form-control")}}
+
+          {{form3.start_date.label()}}
+          {{form3.start_date(class= "form-control")}}
+          {{form3.end_date.label()}}
+          {{form3.end_date(class= "form-control")}}
+          {{form3.link_edu.label()}}
+          {{form3.link_edu(class= "form-control")}}
+
+          {{form3.add(class= "btn btn-outline-primary")}}
+
+      </form>
+      </div>
+    </div>
+    {% endif %}
+    {% if session["user_id"] %}
+    <div class="col">
+      <div class="card p-5">
+        <form  method="POST" enctype = "multipart/form-data" action="{{ url_for('skils_page') }}" class="d-grid">
+          <dt class="text-center"style="font-size: 1.3rem"><h1>SKILLS</h1></dt>
+          {{form4.hidden_tag()}}
+          {{form4.skill.label()}}
+          {{form4.skill(class= "form-control")}}
+          {{form4.level.label()}}
+          {{form4.level(class= "form-control")}}
+          {{form4.image.label()}}
+          {{form4.image(class= "form-control")}}
+          {{form4.about_skill.label()}}
+          {{form4.about_skill(class= "form-control")}}
+          {{form4.add(class= "btn btn-outline-primary")}}
+
+      </form>
+      </div>
+    </div>
+    {% endif %}
+    {% if session["user_id"] %}
+<div class="col">
+  <div class="card p-5">
+    <form  method="POST" enctype = "multipart/form-data" action="{{ url_for('gols_page') }}" class="d-grid">
+      <dt class="text-center"style="font-size: 1.3rem"><h1>GOALS</h1></dt>
+      {{form5.hidden_tag()}}
+      {{form5.gol_pos.label()}}
+      {{form5.gol_pos(class= "form-control")}}
+      {{form5.image.label()}}
+      {{form5.image(class= "form-control")}}
+      {{form5.about_gol.label()}}
+      {{form5.about_gol(class= "form-control")}}
+      {{form5.link.label()}}
+      {{form5.link(class= "form-control")}}
+
+      {{form5.add(class= "btn btn-outline-primary")}}
+
+  </form>
+  </div>
+</div>
+{% endif %}
+{% if session["user_id"] %}
+    <div class="col">
+      <div class="card p-5">
+        <form  method="POST" enctype = "multipart/form-data" action="{{ url_for('hob_page') }}" class="d-grid">
+          <dt class="text-center"style="font-size: 1.3rem"><h1>HOBBIES</h1></dt>
+          {{form6.hidden_tag()}}
+          {{form6.hobby.label()}}
+          {{form6.hobby(class= "form-control")}}
+          {{form6.image.label()}}
+          {{form6.image(class= "form-control")}}
+          {{form6.about_hobby.label()}}
+          {{form6.about_hobby(class= "form-control")}}
+          {{form6.duration.label()}}
+          {{form6.duration(class= "form-control")}}
+          {{form6.add(class= "btn btn-outline-primary")}}
+      </form>
+      </div>
+    </div>
+    {% endif %}
+    {% if session["user_id"] %}
+    <div class="col">
+      <div class="card p-5">
+        <form  method="POST" enctype = "multipart/form-data" action="{{ url_for('ref_page') }}" class="d-grid">
+          <dt class="text-center"style="font-size: 1.3rem"><h1>REFERENCES</h1></dt>
+          {{form7.hidden_tag()}}
+          {{form7.ref_name.label()}}
+          {{form7.ref_name(class= "form-control")}}
+          {{form7.company.label()}}
+          {{form7.company(class= "form-control")}}
+          {{form7.image.label()}}
+          {{form7.image(class= "form-control")}}
+          {{form7.referance.label()}}
+          {{form7.referance(class= "form-control")}}
+          {{form7.mob.label()}}
+          {{form7.mob(class= "form-control")}}
+          {{form7.email.label()}}
+          {{form7.email(class= "form-control")}}
+
+          {{form7.link.label()}}
+          {{form7.link(class= "form-control")}}
+          {{form7.add(class= "btn btn-outline-primary")}}
+
+      </form>
+      </div>
+    </div>
+    {% endif %}
+    {% if session["user_id"] %}
+    <div class="col">
+      <div class="card p-5">
+        <form  method="POST" enctype = "multipart/form-data" action="{{ url_for('social_page') }}" class="d-grid">
+          <dt class="text-center"style="font-size: 1.3rem"><h1>SOCIAL ACTIVITY</h1></dt>
+          {{form8.hidden_tag()}}
+          {{form8.social.label()}}
+          {{form8.social(class= "form-control")}}
+          {{form8.image.label()}}
+          {{form8.image(class= "form-control")}}
+          {{form8.activity.label()}}
+          {{form8.activity(class= "form-control")}}
+          {{form8.link.label()}}
+          {{form8.link(class= "form-control")}}
+          {{form8.add(class= "btn btn-outline-primary")}}
+
+      </form>
+      </div>
+    </div>
+    {% endif %}
+    {% if session["user_id"] %}
+    <div class="col">
+      <div class="card p-5">
+        <form  method="POST" enctype = "multipart/form-data" action="{{ url_for('soc_page') }}" class="d-grid">
+          <dt class="text-center"style="font-size: 1.3rem"><h1>WEBSITE & SOCIAL LINKS + ADITION DETALS</h1></dt>
+          {{form10.hidden_tag()}}
+          {{form10.web.label()}}
+          {{form10.web(class= "form-control")}}
+          {{form10.f_book.label()}}
+          {{form10.f_book(class= "form-control")}}
+          {{form10.twiter.label()}}
+          {{form10.twiter(class= "form-control")}}
+          {{form10.instag.label()}}
+          {{form10.instag(class= "form-control")}}
+          {{form10.add_info.label()}}
+          {{form10.add_info(class= "form-control")}}
+          {{form10.add(class= "btn btn-outline-primary")}}
+
+      </form>
+      </div>
+    </div>
+    {% endif %}
+    {% if session["user_id"] %}
+    <div class="col">
+      <div class="card p-5">
+        <form  method="POST" enctype = "multipart/form-data" action="{{ url_for('lang_page') }}" class="d-grid">
+          <dt class="text-center"style="font-size: 1.3rem"><h1>LANGUAGES</h1></dt>
+          {{form9.hidden_tag()}}
+          {{form9.lang.label()}}
+          {{form9.lang(class= "form-control")}}
+          {{form9.level.label()}}
+          {{form9.level(class= "form-control")}}
+          {{form9.level_by.label()}}
+          {{form9.level_by(class= "form-control")}}
+          {{form9.add(class= "btn btn-outline-primary")}}
+
+      </form>
+      </div>
+    </div>
+    {% endif %}
+    {% if session["user_id"] %}
+    <div class="col">
+      <div class="card p-5">
+        <form  method="POST" enctype = "multipart/form-data" action="{{ url_for('pas_page') }}" class="d-grid">
+          <dt class="text-center"style="font-size: 1.3rem"><h1>Change password</h1></dt>
+          {{form11.hidden_tag()}}
+          {{form11.password1.label()}}
+          {{form11.password1(class= "form-control")}}
+          {{form11.password.label()}}
+          {{form11.password(class= "form-control")}}
+          {{form11.password2.label()}}
+          {{form11.password2(class= "form-control")}}
+          {{form11.create(class= "btn btn-outline-primary")}}
+          
+
+      </form>
+      </div>
+    </div>
+    {% endif %}
+    {% if session["user_id"] %}
+    <div class="col">
+      <div class="card p-5">
+
+    <ul >
+      {% if lang%}
+      <li>
+        <form action="{{ url_for('delete') }}" method="POST">
+        <div class="container text-center">
+          <h1>DELETE LANGUAGES </h1>
+          <div class="row">
+
+            <div class="col p-2 text-start">
+              <select class="form-select " name="item8" required>
+                <option value="" disabled selected>Project</option>
+                {% for val in lang %}
+                    <option value="{{val.lang}}">{{val.lang}}</option>
+                {%endfor%}
+            </select>
+            </div>
+            <div class="col p-2 text-start">
+              <button class="btn " type="submit">Delete</button>
+            </div>
+
+          </div>
+        </div>
+      </form>
+
+      </li>
+      {%endif%}
+      {%if soc%}
+      <li>
+        <form action="{{ url_for('delete') }}" method="POST">
+        <div class="container text-center">
+          <h1>DELETE WEBSITE & SOCIAL LINKS </h1>
+          <div class="row">
+            <div class="col p-2 text-start">
+              <select class="form-select " name="item9" required>
+                <option value="" disabled selected>Project</option>
+                {% for val in soc %}
+                    <option value="{{val.web}}">{{val.web}}</option>
+                {%endfor%}
+            </select>
+            </div>
+            <div class="col p-2 text-start">
+              <button class="btn " type="submit">Delete</button>
+            </div>
+
+          </div>
+        </div>
+      </form>
+
+      </li>
+{%endif%}
+    </ul>
+
+      </div>
+    </div>
+{% endif %}
+  </div>
+{% endblock %}
+

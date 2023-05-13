@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Gols Page
+{% endblock %}
+
+
+
+{% block content %}
+{% if session["user_id"]%}
+{% if not session["token"]%}
+{% if gols %}
+    <ul >
+      <li>
+        <form action="{{ url_for('delete') }}" method="POST">
+        <div class="container text-center">
+          <div class="row">
+            <div class="col p-2 text-start">
+              <select class="form-select " name="item4" required>
+                <option value="" disabled selected>Gols</option>
+                {% for val in gols %}
+                    <option value="{{val.gol_pos}}">{{val.gol_pos}}</option>
+                {%endfor%}
+            </select>
+            </div>
+            <div class="col p-2 text-start">
+              <button class="btn " type="submit">Delete</button>
+            </div>
+
+          </div>
+        </div>
+      </form>
+
+      </li>
+
+    </ul>
+  {% endif %}
+  {% endif %}
+  {% endif %}
+{% if  session["user_id"] %}
+<div class="row p-2 row-cols-1 row-cols-md-2 g-4">
+
+    <!--From db if token-->
+    {% for val in gols %}
+
+    <div class="col ">
+      <div class="card-fluid ">
+        <img src="/uploads/{{val.img}}" class=" card-img-top img-thumbnail rounded mx-auto d-block"  alt="Palm Springs Road"/>
+        <div class="card-body"  >
+          <h5 class="card-title text-center p-2" style="font-size: 1.7rem"><dt>{{val.gol_pos}}</dt></h5>
+          <p class="card-text pt-2" style="font-size: 1.3rem">
+            {{val.about_gol}}
+          </p>
+          {% if not session["token"]%}
+          <p style="font-size: 1.2rem"><a href="{{val.link}}" target=”_blank”>See more</a></p>
+          {%endif%}
+        </div>
+      </div>
+    </div>
+{%endfor%}
+{% endif %}
+  </div>
+{% endblock %}
+

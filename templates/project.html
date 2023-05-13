@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Project Page
+{% endblock %}
+
+{% block content %}
+{% if session["user_id"]%}
+{% if not session["token"]%}
+{% if projects %}
+    <ul >
+      <li>
+        <form action="{{ url_for('delete') }}" method="POST">
+        <div class="container text-center">
+          <div class="row">
+            <div class="col p-2 text-start">
+              <select class="form-select " name="item" required>
+                <option value="" disabled selected>Project</option>
+                {% for val in projects %}
+                    <option value="{{val.project}}">{{val.project}}</option>
+                {%endfor%}
+            </select>
+            </div>
+            <div class="col p-2 text-start">
+              <button class="btn " type="submit">Delete</button>
+            </div>
+
+          </div>
+        </div>
+      </form>
+    </li>
+    </ul>
+  {% endif %}
+  {% endif %}
+  {% endif %}
+<div class="row p-2 row-cols-1 row-cols-md-2 g-4">
+
+    <!--From db if token-->
+
+{% for val in projects %}
+    <div class="col ">
+      <div class="card-fluid ">
+        <img src="/uploads/{{val.img}}" class=" card-img-top img-thumbnail rounded mx-auto d-block"  alt="Palm Springs Road"/>
+        <div class="card-body"  >
+          <h5 class="card-title text-center p-2" style="font-size: 1.7rem"><dt>{{val.project}}</dt></h5>
+          <h4 style="font-size: 1.5rem">Location: {{val.project_loc}} - {{val.type}} </h4>
+          <h4 style="font-size: 1.5rem">Goal - {{val.gool}}</h4>
+          <p class="card-text pt-2" style="font-size: 1.2rem">
+            {{val.about_project}}
+          </p>
+          <p style="font-size: 1.2rem">Start date: {{val.start_date}} &nbsp;&nbsp;&nbsp; End Date: {{val.end_date}}</p>
+          <p style="font-size: 1.2rem"><a href="{{val.link_project}}" target=”_blank”>See more</a></p>
+
+        </div>
+      </div>
+    </div>
+    {%endfor%}
+
+
+  </div>
+{% endblock %}
