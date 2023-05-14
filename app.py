@@ -29,7 +29,7 @@ from forms import (
     SocForm,
     PasForm
 )
-from cs50 import SQL
+from claud import execude
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 from werkzeug.utils import secure_filename
@@ -39,11 +39,11 @@ from datetime import datetime, timedelta
 import uuid
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = "9e5734eb4a542802b7c24415"
-app.config["UPLOAD_FOLDER"] = "/workspaces/104098487/project/uploads"
+
+app.config["UPLOAD_FOLDER"] = "uploads"
 app.config["MAX_CONTENT_LENGTH"] = 16 * 1024 * 1024
 app.config["UPLOAD_EXTENSIONS"] = [".jpg", ".png", ".gif"]
-app.secret_key = '9e5734eb4a542802b7c24415as'
+
 
 # Configure session to use filesystem (instead of signed cookies)
 app.config["SESSION_PERMANENT"] = False

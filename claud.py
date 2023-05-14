@@ -1,17 +1,22 @@
 #Python 3.10.8
 import mysql.connector
-#from datetime import datetime
+import re
+from flask import flash
 # create a connection to the database with SSL/TLS encryption
+cnx = mysql.connector.connect(user='i5yk1ak6ylwupeb7oma1',               password='pscale_pw_7Td2XbIi42vZ2RzzdT2eOxW8a7pJsYImaVSumN28ZWt',                             host='aws.connect.psdb.cloud',database='resume',                         ssl_ca='/etc/ssl/certs/ca-certificates.crt')
 
-
-
-# data modification function
-def create_dict_with_numeric_keys(values_tuple):
-    dict_with_numeric_keys = {}
-    for index, value in enumerate(values_tuple):
-        dict_with_numeric_keys[index] = value
-    return dict_with_numeric_keys
+# test input data at all input filds
+def sanitize_input(input_string):
+    if input_string.find('--'):
+        category = "danger"
+        flash(["Simbols -- ; and others are not allowed for security reasons use only , . ! @"], category)
+    semicolon_index = input_string.find(';')
+    if semicolon_index >= 0:
+        input_string = input_string[:semicolon_index]
+    sanitized_string = re.sub(r'[^A-Za-z0-9.,!@]', '', input_string)
+    return  sanitized_string
   
+# data modification function  
 def convert_tuple_to_dict(tuples_list):
     result_list = []
     for tuple_item in tuples_list:
@@ -21,43 +26,49 @@ def convert_tuple_to_dict(tuples_list):
         result_list.append(dict_item)
     return result_list
   
-# create a cursor object on login or true token for executing queries  
-cursor = cnx.cursor()
-  
+
 """Function prototype >> execude(query, (tuple_values))
   to execute query as strings values implement (0),(1),(2)...
-  returns list of dic with numeric keys"""
-# formats DATE type to specific or defalt =
-# format datetime.datetime(2023, 5, 10, 22, 48, 53)  
+  returns list of dic with numeric keys""" 
 def execute(query,tuple_values):
-    d = create_dict_with_numeric_keys((tuple_values))
-    input_string = query
-    output_string = ''
-    for i in range(len(d)):
-      output_string = input_string.replace('(i)', (d.get('i')))
-    
-    cursor.execute(output_string)
-    results = cursor.fetchall()
-    return convert_tuple_to_dict(results)
+    print(query[:6])
+    if query[:6] == "SELECT":
+      cursor = cnx.cursor()
+      cursor.execute(query,tuple_values)
+      results = cursor.fetchall()
+      cursor.close()
+      cnx.close()
+      return convert_tuple_to_dict(results)
+    elif query[:6] == "INSERT":
+      valu=[]
+      for val in tuple_values:
+        valu.append(sanitize_input(val))
+      values=tuple(valu)
+      cursor = cnx.cursor()
+      cursor.execute(query, values)
+      cnx.commit()
+      cursor.close()
+      cnx.close()
+      return True
+      
+    elif query[:6] == "UPDATE":
+      valu=[]
+      for val in tuple_values:
+        valu.append(sanitize_input(val))
+      values=tuple(valu)
+      cursor = cnx.cursor()
+      cursor.execute(query, values)
+      cnx.commit()
+      cursor.close()
+      cnx.close()
+      return True
+    elif query[:6] == "DELETE":
+      cursor = cnx.cursor()
+      cursor.execute(query, tuple_values)
+      cnx.commit()
+      cursor.close()
+      cnx.close()
+      return True
+    else:
+      pass
 
-
-#s='users'
-# execute a query
-#query = f'SELECT * FROM {s}'
-# define a variable to hold the table name
-#table_name = 'mytable'
-
-# build a dynamic query with string concatenation
-#query = 'SELECT * FROM ' + table_name
-
-query = 'SELECT * FROM users'
-cursor.execute(query)
-
-# fetch the results and print them
-results = cursor.fetchall()
-for row in cursor:
-  print(row)
-#returns list of tuples 
-# close the cursor and connection
-cursor.close()
-cnx.close()
