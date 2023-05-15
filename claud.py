@@ -3,7 +3,7 @@ import mysql.connector
 import re
 from flask import flash
 # create a connection to the database with SSL/TLS encryption
-cnx = mysql.connector.connect(user='i5yk1ak6ylwupeb7oma1',               password='pscale_pw_7Td2XbIi42vZ2RzzdT2eOxW8a7pJsYImaVSumN28ZWt',                             host='aws.connect.psdb.cloud',database='resume',                         ssl_ca='/etc/ssl/certs/ca-certificates.crt')
+cnx = mysql.connector.connect(user='xxxxxxxxx',               password='xxxxxx',                             host='xxxxx',database='xxxxxx',                         ssl_ca='/etc/ssl/certs/ca-certificates.crt')
 
 # test input data at all input filds
 def sanitize_input(input_string):
